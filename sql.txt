@@ -1,0 +1,60 @@
+###   1
+CREATE TABLE `thecamp_market` (
+  `id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_value` int(11) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
+  `recored_date` timestamp NOT NULL DEFAULT current_timestamp()
+)
+
+
+
+//  1
+ALTER TABLE `thecamp_market`
+  ADD PRIMARY KEY (`id`);
+
+// 1
+ALTER TABLE `thecamp_market`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+
+
+### 2
+CREATE TABLE `thecamp_market_sells` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `sells_quantity` int(11) NOT NULL,
+  `recored_date` timestamp NOT NULL DEFAULT current_timestamp()
+)
+
+// 2
+
+ALTER TABLE `thecamp_market_sells`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `const_relation` (`product_id`);
+
+
+// 2
+
+
+ALTER TABLE `thecamp_market_sells`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+//  2
+
+
+ALTER TABLE `thecamp_market_sells`
+  ADD CONSTRAINT `const_relation` FOREIGN KEY (`product_id`) REFERENCES `thecamp_market_sells` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+
+
+
+
+
+
+
